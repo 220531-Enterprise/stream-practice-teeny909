@@ -14,172 +14,128 @@ import com.revature.models.Student;
 import com.revature.models.TempStudent;
 
 public class StreamTest {
-	
-    public static void main(String[] args) {
-    	
-    	/*
-    	 * ============== Don't alter the code between lines 24 - 42 ==============
-    	 */
- 
-        Student student1 = new Student(
-            "Bob",
-            20,
-            new Address("1234"),
-            Arrays.asList(new MobileNumber("1233"), new MobileNumber("1234")));
- 
-        Student student2 = new Student(
-            "Alice",
-            20,
-            new Address("1235"),
-            Arrays.asList(new MobileNumber("1111"), new MobileNumber("3333"), new MobileNumber("1233")));
- 
-        Student student3 = new Student(
-            "Wally",
-            20,
-            new Address("1236"),
-            Arrays.asList(new MobileNumber("3333"), new MobileNumber("4444")));
- 
-        List<Student> students = Arrays.asList(student1, student2, student3);
-        
-    	/*
-    	 *========== Don't alter the code above (lines 24 - 42) ===============
-    	 */
-        
-        /***************************************************************************
-         (1) Get the student with the name "Bob" and print his name to the console.
-             If "Bob" does not exist, print "No student found".
-     	     HINT: Store students.stream()...etc to an Optional<Student> in the case that the student
-             doesn't exist. Resource: https://www.geeksforgeeks.org/java-8-optional-class/
-        ****************************************************************************/
 
-        
-        // Code your Solution here
+	public static void main(String[] args) {
 
-        
-        
-        
-        /***************************************************************************
-         (2) Get the student with matching address "1235" and print their name to the console.
-             If the address does not exist, print "No student found".
-             HINT: Store students.stream()...etc to an Optional<Student> in the case that the student
-             doesn't exist. Resource: https://www.geeksforgeeks.org/java-8-optional-class/
-        ****************************************************************************/
+		/*
+		 * ============== Don't alter the code between lines 24 - 42 ==============
+		 */
 
-        
-        // Code your Solution here
+		Student student1 = new Student("Bob", 20, new Address("1234"),
+				Arrays.asList(new MobileNumber("1233"), new MobileNumber("1234")));
 
-        
-        
-        
-        
-        /****************************************************************************
-         (3) Get all the students that have the mobile number "3333" and print their
-             names to the console.
-        *****************************************************************************/
+		Student student2 = new Student("Alice", 20, new Address("1235"),
+				Arrays.asList(new MobileNumber("1111"), new MobileNumber("3333"), new MobileNumber("1233")));
 
-        
-        // Code your Solution here
+		Student student3 = new Student("Wally", 20, new Address("1236"),
+				Arrays.asList(new MobileNumber("3333"), new MobileNumber("4444")));
 
-        
-        
-        
-        
-        /***************************************************************************
-         (4) Get all student having mobile number "1233" and "1234" and print their
-             names to the console.
-         ***************************************************************************/
+		List<Student> students = Arrays.asList(student1, student2, student3);
 
-        
-        // Code your Solution here
-        
-        
-        
-        
-        
-        /***************************************************************************
-	     (5) Create a List<Student> from the tmpStudents List. Call it studentList.
-	         Hint: Use Collectors.toList(). Print it to the console. 
-	         Resource: https://www.geeksforgeeks.org/collectors-tolist-method-in-java-with-examples/
-        ****************************************************************************/
-        TempStudent tmpStud1 = new TempStudent(
-            "Bob1",
-            201,
-            new Address("12341"),
-            Arrays.asList(new MobileNumber("12331"), new MobileNumber("12341")));
- 
-        TempStudent tmpStud2 = new TempStudent(
-            "Alice1",
-            202,
-            new Address("12351"),
-            Arrays.asList(new MobileNumber("11111"), new MobileNumber("33331"), new MobileNumber("12331")));
- 
-        List<TempStudent> tmpStudents = Arrays.asList(tmpStud1, tmpStud2);
-        
-        // Code your Solution here, don't touch the code above
- 
+		/*
+		 * ========== Don't alter the code above (lines 24 - 42) ===============
+		 */
 
-        
-        
-        
- 
-        /***************************************************************************
-         (6) Convert the List<Student> called studentList that you made in question (5) to 
-             List<String> of just their names. Call this new list "studentNames". 
-             Print it to the console.
-        ****************************************************************************/
+		/***************************************************************************
+		 * (1) Get the student with the name "Bob" and print his name to the console. If
+		 * "Bob" does not exist, print "No student found". HINT: Store
+		 * students.stream()...etc to an Optional<Student> in the case that the student
+		 * doesn't exist. Resource: https://www.geeksforgeeks.org/java-8-optional-class/
+		 ****************************************************************************/
 
-        
-        // Code your Solution here
+		// Code your Solution here
+		// use optional
+		System.out.println("========= ANSWER TO QUESTION 1 ========");
 
-        
-        
-        
-        
-        /***************************************************************************
-          (7) Convert List<Students> to a single String called name with just their names.
-          	  Print that String to the console.
-        ****************************************************************************/
+		Optional<Student> hasBob = students.stream().filter(s -> s.getName().equals("Bob")).findFirst();
+		System.out.println((hasBob.isPresent() ? hasBob.get().getName() : "Bob not found"));
 
-        
-        // Code your Solution here
+		/***************************************************************************
+		 * (2) Get the student with matching address "1235" and print their name to the
+		 * console. If the address does not exist, print "No student found". HINT: Store
+		 * students.stream()...etc to an Optional<Student> in the case that the student
+		 * doesn't exist. Resource: https://www.geeksforgeeks.org/java-8-optional-class/
+		 ****************************************************************************/
+		System.out.println("========= ANSWER TO QUESTION 2 ========");
 
-        
-        
-        
-        
-        /****************************************************************************
-         (8) Change all the Strings within the List<String> nameList to Upper Case.
-             Print it to the screen.
-        *****************************************************************************/
-        List<String> nameList =
-            Arrays.asList("Bob", "Danny", "Alice", "Eddie", "Cathy");
- 
-        // Code your Solution here, don't touch the code above
+		// Code your Solution here
+		Optional<Student> hasAdd = students.stream()
+				.filter(s -> s.getAddress().getZipcode().equals("1235"))
+				.findFirst();
+		System.out.println((hasAdd.isPresent()) ? hasAdd.get().getName() : "No student found");
 
-        
-        
-        
-        
-        /****************************************************************************
-         (9) Sort List<String> namesList by natural order.
-             Hint: Research .sorted() method https://www.geeksforgeeks.org/stream-sorted-in-java/#:~:text=Stream%20sorted()%20returns%20a,streams%2C%20no%20stability%20is%20guaranteed.
-         *****************************************************************************/
-        List<String> namesList =
-            Arrays.asList("Bob", "Danny", "Alice", "Eddie", "Cathy");
- 
-        // Code your Solution here, don't touch the code above
+		/****************************************************************************
+		 * (3) Get all the students that have the mobile number "3333" and print their
+		 * names to the console.
+		 *****************************************************************************/
+		System.out.println("========= ANSWER TO QUESTION 3 ========");
+		// Code your Solution here
+		//several students. so no opt, make it a list of students 
+		List<Student> mob = students.stream()
+				.filter(s -> s.getMobileNumbers()
+						.stream()
+						.anyMatch(num -> num.getNumber().equals("3333")))
+				.collect(Collectors.toList());
+		//call forEAch on the collection and priunt name of each student 
+		mob.forEach(s -> System.out.println(s.getName()));
+						
+				
+		
+		/***************************************************************************
+		 * (4) Get all student having mobile number "1233" and "1234" and print their
+		 * names to the console.
+		 ***************************************************************************/
+		System.out.println("========= ANSWER TO QUESTION 4 ========");
 
+		// Code your Solution here
+		
+		/***************************************************************************
+		 * (5) Create a List<Student> from the tmpStudents List. Call it studentList.
+		 * Hint: Use Collectors.toList(). Print it to the console. Resource:
+		 * https://www.geeksforgeeks.org/collectors-tolist-method-in-java-with-examples/
+		 ****************************************************************************/
+		TempStudent tmpStud1 = new TempStudent("Bob1", 201, new Address("12341"),
+				Arrays.asList(new MobileNumber("12331"), new MobileNumber("12341")));
 
-        
-        
- 
-    }
-    
-    
+		TempStudent tmpStud2 = new TempStudent("Alice1", 202, new Address("12351"),
+				Arrays.asList(new MobileNumber("11111"), new MobileNumber("33331"), new MobileNumber("12331")));
+
+		List<TempStudent> tmpStudents = Arrays.asList(tmpStud1, tmpStud2);
+
+		// Code your Solution here, don't touch the code above
+
+		/***************************************************************************
+		 * (6) Convert the List<Student> called studentList that you made in question
+		 * (5) to List<String> of just their names. Call this new list "studentNames".
+		 * Print it to the console.
+		 ****************************************************************************/
+
+		// Code your Solution here
+
+		/***************************************************************************
+		 * (7) Convert List<Students> to a single String called name with just their
+		 * names. Print that String to the console.
+		 ****************************************************************************/
+
+		// Code your Solution here
+
+		/****************************************************************************
+		 * (8) Change all the Strings within the List<String> nameList to Upper Case.
+		 * Print it to the screen.
+		 *****************************************************************************/
+		List<String> nameList = Arrays.asList("Bob", "Danny", "Alice", "Eddie", "Cathy");
+
+		// Code your Solution here, don't touch the code above
+
+		/****************************************************************************
+		 * (9) Sort List<String> namesList by natural order. Hint: Research .sorted()
+		 * method
+		 * https://www.geeksforgeeks.org/stream-sorted-in-java/#:~:text=Stream%20sorted()%20returns%20a,streams%2C%20no%20stability%20is%20guaranteed.
+		 *****************************************************************************/
+		List<String> namesList = Arrays.asList("Bob", "Danny", "Alice", "Eddie", "Cathy");
+
+		// Code your Solution here, don't touch the code above
+
+	}
+
 }
-
-
-
-
-
-
