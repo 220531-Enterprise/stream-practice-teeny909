@@ -121,11 +121,10 @@ public class StreamTest {
 		System.out.println("========= ANSWER TO QUESTION 5 ========");
 		//tmp studnets is a dumb class 
 		//tmpstudent.name gets the name 
-//		tmpStudents.stream()
-//				.filter(s -> s instanceof Student)
-//				.map(c -> (Student) c)
-//				.map(Student::getName)
-//				.forEach(System.out::println);
+		List<Student> studentList = tmpStudents.stream()
+				.map(s-> new Student(s.name, s.age, s.address, s.mobileNumbers))
+				.collect(Collectors.toList());
+		studentList.forEach(s -> System.out.println(s));
 		
 		
 		/***************************************************************************
@@ -135,14 +134,23 @@ public class StreamTest {
 		 ****************************************************************************/
 
 		// Code your Solution here
+		System.out.println("========= ANSWER TO QUESTION 6 ========");
 
+		List<String> studentNames = studentList.stream()
+				.map(s-> s.getName())
+				.collect(Collectors.toList());
+		studentNames.forEach(s-> System.out.println(s));
 		/***************************************************************************
 		 * (7) Convert List<Students> to a single String called name with just their
 		 * names. Print that String to the console.
 		 ****************************************************************************/
 
 		// Code your Solution here
+		System.out.println("========= ANSWER TO QUESTION 7 ========");
 
+		String name = studentNames.stream()
+				.collect(Collectors.joining(", "));
+		System.out.println(name);
 		/****************************************************************************
 		 * (8) Change all the Strings within the List<String> nameList to Upper Case.
 		 * Print it to the screen.
@@ -150,16 +158,22 @@ public class StreamTest {
 		List<String> nameList = Arrays.asList("Bob", "Danny", "Alice", "Eddie", "Cathy");
 
 		// Code your Solution here, don't touch the code above
-
+		System.out.println("========= ANSWER TO QUESTION 8 ========");
+		List<String> upper = nameList.stream()
+				.map(s-> s.toUpperCase())
+				.collect(Collectors.toList());
+		upper.forEach(s-> System.out.println(s));
 		/****************************************************************************
 		 * (9) Sort List<String> namesList by natural order. Hint: Research .sorted()
 		 * method
 		 * https://www.geeksforgeeks.org/stream-sorted-in-java/#:~:text=Stream%20sorted()%20returns%20a,streams%2C%20no%20stability%20is%20guaranteed.
 		 *****************************************************************************/
-		List<String> namesList = Arrays.asList("Bob", "Danny", "Alice", "Eddie", "Cathy");
-
+		
 		// Code your Solution here, don't touch the code above
-
+		System.out.println("========= ANSWER TO QUESTION 9 ========");
+		List<String> namesList = Arrays.asList("Bob", "Danny", "Alice", "Eddie", "Cathy");
+		List<String> sorted = nameList.stream().map(s -> s.toUpperCase()).sorted().collect(Collectors.toList());
+		sorted.forEach(s -> System.out.println(s));
 	}
 
 }
