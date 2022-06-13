@@ -86,9 +86,24 @@ public class StreamTest {
 		 * names to the console.
 		 ***************************************************************************/
 		System.out.println("========= ANSWER TO QUESTION 4 ========");
-
-		// Code your Solution here
+		//two lists: 1233 and 1234 
+		//if student is in both lists, print their name 
 		
+		// Code your Solution here
+		List<Student> l1 = students.stream()
+				.filter(s -> s.getMobileNumbers()
+						.stream()
+						.anyMatch(num -> num.getNumber().equals("1233")))
+				.collect(Collectors.toList());
+		List<Student> l2 = students.stream()
+				.filter(s -> s.getMobileNumbers()
+						.stream()
+						.anyMatch(num -> num.getNumber().equals("1234")))
+				.collect(Collectors.toList());
+		for(Student s: l1) {
+			if(l2.contains(s))
+				System.out.println(s.getName());
+		}
 		/***************************************************************************
 		 * (5) Create a List<Student> from the tmpStudents List. Call it studentList.
 		 * Hint: Use Collectors.toList(). Print it to the console. Resource:
@@ -103,7 +118,16 @@ public class StreamTest {
 		List<TempStudent> tmpStudents = Arrays.asList(tmpStud1, tmpStud2);
 
 		// Code your Solution here, don't touch the code above
-
+		System.out.println("========= ANSWER TO QUESTION 5 ========");
+		//tmp studnets is a dumb class 
+		//tmpstudent.name gets the name 
+//		tmpStudents.stream()
+//				.filter(s -> s instanceof Student)
+//				.map(c -> (Student) c)
+//				.map(Student::getName)
+//				.forEach(System.out::println);
+		
+		
 		/***************************************************************************
 		 * (6) Convert the List<Student> called studentList that you made in question
 		 * (5) to List<String> of just their names. Call this new list "studentNames".
