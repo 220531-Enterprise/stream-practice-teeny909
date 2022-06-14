@@ -137,7 +137,7 @@ public class StreamTest {
 		System.out.println("========= ANSWER TO QUESTION 6 ========");
 
 		List<String> studentNames = studentList.stream()
-				.map(s-> s.getName())
+				.map(s-> s.getName())//in parenthesis, Student::getName bc no params :) 
 				.collect(Collectors.toList());
 		studentNames.forEach(s-> System.out.println(s));
 		/***************************************************************************
@@ -160,7 +160,7 @@ public class StreamTest {
 		// Code your Solution here, don't touch the code above
 		System.out.println("========= ANSWER TO QUESTION 8 ========");
 		List<String> upper = nameList.stream()
-				.map(s-> s.toUpperCase())
+				.map(String::toUpperCase)//String::toUpperCase?
 				.collect(Collectors.toList());
 		upper.forEach(s-> System.out.println(s));
 		/****************************************************************************
@@ -172,7 +172,10 @@ public class StreamTest {
 		// Code your Solution here, don't touch the code above
 		System.out.println("========= ANSWER TO QUESTION 9 ========");
 		List<String> namesList = Arrays.asList("Bob", "Danny", "Alice", "Eddie", "Cathy");
-		List<String> sorted = nameList.stream().map(s -> s.toUpperCase()).sorted().collect(Collectors.toList());
+		List<String> sorted = nameList.stream()
+				.map(String::toUpperCase)//method referencing 
+				.sorted()
+				.collect(Collectors.toList());
 		sorted.forEach(s -> System.out.println(s));
 	}
 
